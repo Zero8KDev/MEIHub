@@ -1,4 +1,5 @@
 import React from 'react';
+
 import {
     View,
     Text,
@@ -7,34 +8,98 @@ import {
 
 export default function Detalhe({ route, navigation }) {
 
-    const { agendamento } = route.params;
+    // Recebe o cliente enviado pela tela Lista.
+    const { cliente } = route.params;
 
     return (
-    <View>
+        <View>
 
-        <Text>Detalhes do agendamento</Text>
+            {/* Cabeçalho */}
+            <View>
 
-        <Text>Cliente:</Text>
-        <Text>{agendamento.cliente}</Text>
+                {/* Botão voltar */}
+                <Pressable
+                    onPress={() => navigation.goBack()}
+                >
+                    <Text>‹</Text>
+                    <Text>Voltar</Text>
+                </Pressable>
 
-        <Text>Serviço:</Text>
-        <Text>{agendamento.servico}</Text>
+                <Text>Detalhes do Cliente</Text>
 
-        <Text>Data:</Text>
-        <Text>{agendamento.data}</Text>
+            </View>
 
-        <Text>Horário:</Text>
-        <Text>{agendamento.horario}</Text>
 
-        <Text>Status:</Text>
-        <Text>{agendamento.status}</Text>
+            {/* Informações principais do cliente */}
+            <View>
 
-        <Pressable
-        onPress={() => navigation.goBack()}
-        >
-        <Text>Voltar</Text>
-        </Pressable>
+                {/* Iniciais */}
+                <View>
+                    <Text>{cliente.iniciais}</Text>
+                </View>
 
-    </View>
+                {/* Nome */}
+                <Text>{cliente.nome}</Text>
+
+                {/* Serviço */}
+                <Text>{cliente.servico}</Text>
+
+                {/* Status */}
+                <View>
+                    <Text>{cliente.status}</Text>
+                </View>
+
+            </View>
+
+
+            {/* Informações de contato e cadastro */}
+            <View>
+
+                {/* E-mail */}
+                <View>
+                    <Text>E-mail</Text>
+                    <Text>{cliente.email}</Text>
+                </View>
+
+
+                {/* Telefone */}
+                <View>
+                    <Text>Telefone</Text>
+                    <Text>{cliente.telefone}</Text>
+                </View>
+
+
+                {/* Cliente desde */}
+                <View>
+                    <Text>Cliente desde</Text>
+                    <Text>{cliente.desde}</Text>
+                </View>
+
+
+                {/* Valor mensal */}
+                <View>
+                    <Text>Valor mensal</Text>
+                    <Text>{cliente.valorMensal}</Text>
+                </View>
+
+            </View>
+
+
+            {/* Botão para enviar mensagem */}
+            <Pressable
+                onPress={() => alert('Enviar mensagem')}
+            >
+                <Text>Enviar mensagem</Text>
+            </Pressable>
+
+
+            {/* Botão para editar */}
+            <Pressable
+                onPress={() => alert('Editar cliente')}
+            >
+                <Text>Editar cliente</Text>
+            </Pressable>
+
+        </View>
     );
 }
