@@ -1,11 +1,14 @@
 import React from 'react';
+
 import {
     View,
     Text,
     Pressable,
-    FlatList
+    FlatList,
+    SafeAreaView,
+    StatusBar,
+    StyleSheet
 } from 'react-native';
-
 // Lista de clientes utilizada nesta primeira versão.
 // Os dados são fixos e futuramente serão substituídos
 // pelos dados armazenados no SQLite.
@@ -76,132 +79,401 @@ export default function Lista({ navigation }) {
             cliente: cliente
         });
     }
+import { StyleSheet } from 'react-native';
 
-    return (
-        <View>
+export const styles = StyleSheet.create({
 
-            {/* Cabeçalho do aplicativo */}
-            <View>
-                <Text>m.</Text>
-                <Text>Meu Negócio</Text>
+    // =====================================================
+    // TELA
+    // =====================================================
 
-                {/* Botão de notificações */}
-                <Pressable
-                    onPress={() => alert('Notificações')}
-                >
-                    <Text>🔔</Text>
-                </Pressable>
-            </View>
+    container: {
+        flex: 1,
+        backgroundColor: '#F5F8FC',
+    },
 
+    // =====================================================
+    // CABEÇALHO AZUL
+    // =====================================================
 
-            {/* Saudação */}
-            <View>
-                <Text>Olá, XXX</Text>
+    header: {
+        backgroundColor: '#10477D',
+        paddingTop: 26,
+        paddingHorizontal: 17,
+        paddingBottom: 26,
 
-                <Text>
-                    Seus clientes, sempre
-                </Text>
+        borderBottomLeftRadius: 22,
+        borderBottomRightRadius: 22,
+    },
 
-                <Text>
-                    por perto.
-                </Text>
-            </View>
+    headerTop: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+    },
 
+    logoArea: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
 
-            {/* Resumo dos clientes */}
-            <View>
+    logo: {
+        width: 30,
+        height: 30,
+        borderRadius: 8,
+        backgroundColor: '#FFFFFF',
 
-                <View>
-                    <Text>Clientes ativos</Text>
-                    <Text>24</Text>
-                </View>
+        alignItems: 'center',
+        justifyContent: 'center',
 
-                <View>
-                    <Text>Este mês</Text>
-                    <Text>+3</Text>
-                </View>
+        marginRight: 7,
+    },
 
-                <Pressable
-                    onPress={() => alert('Clientes')}
-                >
-                    <Text>♧</Text>
-                </Pressable>
+    logoText: {
+        color: '#10477D',
+        fontSize: 16,
+        fontWeight: '800',
+    },
 
-            </View>
+    appName: {
+        color: '#FFFFFF',
+        fontSize: 15,
+        fontWeight: '700',
+    },
 
+    notificationButton: {
+        width: 35,
+        height: 35,
+        borderRadius: 18,
 
-            {/* Campo de busca */}
-            <View>
-                <Text>⌕</Text>
+        backgroundColor: '#245889',
 
-                <Text>
-                    Buscar por nome ou serviço
-                </Text>
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
 
-                <Pressable
-                    onPress={() => alert('Filtros')}
-                >
-                    <Text>☷</Text>
-                </Pressable>
-            </View>
+    notificationText: {
+        fontSize: 17,
+    },
 
+    // =====================================================
+    // SAUDAÇÃO
+    // =====================================================
 
-            {/* Título da lista */}
-            <View>
-                <Text>Clientes</Text>
-                <Text>24 cadastrados</Text>
-            </View>
+    greeting: {
+        marginTop: 23,
+    },
 
+    greetingSmall: {
+        color: '#D9E8F8',
+        fontSize: 12,
+        marginBottom: 7,
+    },
 
-            {/* Lista de clientes */}
-            <FlatList
-                data={clientes}
-                keyExtractor={(item) => item.id}
+    greetingTitle: {
+        color: '#FFFFFF',
+        fontSize: 29,
+        lineHeight: 34,
+        fontWeight: '400',
+    },
 
-                renderItem={({ item }) => (
+    // =====================================================
+    // RESUMO
+    // =====================================================
 
-                    <Pressable
-                        onPress={() => abrirDetalhe(item)}
-                    >
+    summaryCard: {
+        marginTop: 20,
 
-                        {/* Iniciais do cliente */}
-                        <View>
-                            <Text>{item.iniciais}</Text>
-                        </View>
+        minHeight: 76,
 
+        backgroundColor: '#DCEBFA',
+        borderRadius: 14,
 
-                        {/* Informações principais */}
-                        <View>
-                            <Text>{item.nome}</Text>
-                            <Text>{item.servico}</Text>
-                        </View>
+        paddingHorizontal: 14,
+        paddingVertical: 13,
 
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
 
-                        {/* Status */}
-                        <View>
-                            <Text>{item.status}</Text>
-                        </View>
+    summaryItem: {
+        flex: 1,
+    },
 
+    summaryLabel: {
+        color: '#71869D',
+        fontSize: 10,
+        marginBottom: 5,
+    },
 
-                        {/* Botão de informações */}
-                        <Pressable
-                            onPress={() => abrirDetalhe(item)}
-                        >
-                            <Text>i</Text>
-                        </Pressable>
+    summaryNumber: {
+        color: '#124A80',
+        fontSize: 24,
+        fontWeight: '400',
+    },
 
-                    </Pressable>
-                )}
-            />
+    summaryButton: {
+        width: 36,
+        height: 36,
+        borderRadius: 20,
 
+        backgroundColor: '#0B4179',
 
-            {/* Botão Adicionar */}
-            <Pressable
-                onPress={() => alert('Em breve!')}
-            >
-                <Text>+</Text>
-            </Pressable>
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
 
-        </View>
-    );
-}
+    summaryButtonText: {
+        color: '#FFFFFF',
+        fontSize: 18,
+    },
+
+    // =====================================================
+    // ÁREA ABAIXO DO CABEÇALHO
+    // =====================================================
+
+    content: {
+        flex: 1,
+    },
+
+    // =====================================================
+    // BUSCA
+    // =====================================================
+
+    searchContainer: {
+        marginTop: 22,
+        marginHorizontal: 17,
+
+        height: 43,
+
+        backgroundColor: '#FFFFFF',
+        borderRadius: 13,
+
+        flexDirection: 'row',
+        alignItems: 'center',
+
+        paddingHorizontal: 14,
+
+        shadowColor: '#173B61',
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.05,
+        shadowRadius: 5,
+
+        elevation: 2,
+    },
+
+    searchIcon: {
+        color: '#71879F',
+        fontSize: 20,
+        marginRight: 9,
+    },
+
+    searchText: {
+        flex: 1,
+
+        color: '#71879F',
+        fontSize: 13,
+    },
+
+    filterButton: {
+        paddingLeft: 10,
+    },
+
+    filterText: {
+        color: '#10477D',
+        fontSize: 18,
+    },
+
+    // =====================================================
+    // TÍTULO DA LISTA
+    // =====================================================
+
+    listHeader: {
+        marginTop: 18,
+        marginHorizontal: 17,
+
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+
+        marginBottom: 10,
+    },
+
+    listTitle: {
+        color: '#152F4A',
+        fontSize: 20,
+        fontWeight: '400',
+    },
+
+    registeredText: {
+        color: '#154C82',
+        fontSize: 11,
+    },
+
+    // =====================================================
+    // LISTA
+    // =====================================================
+
+    list: {
+        flex: 1,
+    },
+
+    listContent: {
+        paddingHorizontal: 17,
+        paddingBottom: 85,
+    },
+
+    // =====================================================
+    // CLIENTE
+    // =====================================================
+
+    clientCard: {
+        minHeight: 62,
+
+        backgroundColor: '#FFFFFF',
+
+        flexDirection: 'row',
+        alignItems: 'center',
+
+        paddingHorizontal: 9,
+
+        borderBottomWidth: 1,
+        borderBottomColor: '#E4ECF4',
+    },
+
+    firstClient: {
+        borderTopLeftRadius: 15,
+        borderTopRightRadius: 15,
+    },
+
+    lastClient: {
+        borderBottomLeftRadius: 15,
+        borderBottomRightRadius: 15,
+
+        borderBottomWidth: 0,
+    },
+
+    initials: {
+        width: 41,
+        height: 41,
+
+        borderRadius: 13,
+
+        backgroundColor: '#DCECFB',
+
+        alignItems: 'center',
+        justifyContent: 'center',
+
+        marginRight: 10,
+    },
+
+    initialsText: {
+        color: '#124A80',
+        fontSize: 12,
+        fontWeight: '700',
+    },
+
+    clientInfo: {
+        flex: 1,
+        justifyContent: 'center',
+    },
+
+    clientName: {
+        color: '#17324D',
+        fontSize: 14,
+        fontWeight: '500',
+
+        marginBottom: 3,
+    },
+
+    clientService: {
+        color: '#71849A',
+        fontSize: 10,
+    },
+
+    // =====================================================
+    // STATUS
+    // =====================================================
+
+    statusContainer: {
+        backgroundColor: '#E7F7F0',
+
+        borderRadius: 10,
+
+        paddingHorizontal: 8,
+        paddingVertical: 4,
+
+        marginRight: 10,
+    },
+
+    statusText: {
+        color: '#2DA271',
+        fontSize: 9,
+    },
+
+    // =====================================================
+    // BOTÃO "i"
+    // =====================================================
+
+    infoButton: {
+        width: 28,
+        height: 28,
+
+        borderRadius: 15,
+
+        borderWidth: 1,
+        borderColor: '#D3E0EC',
+
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+
+    infoText: {
+        color: '#124A80',
+        fontSize: 14,
+        fontWeight: '500',
+    },
+
+    // =====================================================
+    // BOTÃO FLUTUANTE
+    // =====================================================
+
+    addButton: {
+        position: 'absolute',
+
+        right: 17,
+        bottom: 16,
+
+        width: 52,
+        height: 52,
+
+        borderRadius: 27,
+
+        backgroundColor: '#0B4179',
+
+        alignItems: 'center',
+        justifyContent: 'center',
+
+        shadowColor: '#0B4179',
+        shadowOffset: {
+            width: 0,
+            height: 4,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 7,
+
+        elevation: 6,
+    },
+
+    addButtonText: {
+        color: '#FFFFFF',
+        fontSize: 27,
+        fontWeight: '200',
+
+        marginTop: -2,
+    },
+
+});
