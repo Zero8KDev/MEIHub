@@ -18,6 +18,28 @@ Babuínos do note.js — Projeto PAM I
 
 Gestão de clientes, serviços e agendamentos para MEIs e pequenos prestadores de serviços.
 
+## Como rodar o projeto
+
+Projeto criado com [`create-expo-app`](https://www.npmjs.com/package/create-expo-app) (Expo / React Native).
+
+1. Instale as dependências
+
+   ```bash
+   npm install
+   ```
+
+2. Inicie o app
+
+   ```bash
+   npx expo start
+   ```
+
+3. Abra no seu dispositivo ou emulador:
+   - **Expo Go**: escaneie o QR Code exibido no terminal
+   - **Web**: pressione `w` no terminal (requer `react-dom` e `react-native-web`)
+   - **Android emulador**: pressione `a`
+   - **iOS simulator**: pressione `i`
+
 ## Fichas de Entrega
 
 | Fase | Descrição | Prazo | Link |
