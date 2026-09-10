@@ -1,9 +1,11 @@
-import React from 'react';
-
 import {
     View,
     Text,
-    Pressable
+    Pressable,
+    ScrollView,
+    SafeAreaView,
+    StatusBar,
+    StyleSheet
 } from 'react-native';
 
 export default function Detalhe({ route, navigation }) {

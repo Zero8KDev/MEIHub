@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     View,
     Text,
     Pressable,
-    FlatList
+    FlatList,
+    SafeAreaView,
+    StatusBar,
+    StyleSheet,
+    TextInput
 } from 'react-native';
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 // Lista de clientes utilizada nesta primeira versão.
-// Os dados são fixos e futuramente serão substituídos
-// pelos dados armazenados no SQLite.
 const clientes = [
     {
         id: '1',
@@ -69,8 +73,83 @@ const clientes = [
 
 export default function Lista({ navigation }) {
 
-    // Função executada quando um cliente é selecionado.
-    // Envia o objeto completo do cliente para a tela Detalhe.
+    const [clientesLista, setClientesLista] = useState(clientes);
+
+    const [modalAberto, setModalAberto] = useState(false);
+
+    const [nome, setNome] = useState('');
+    const [servico, setServico] = useState('');
+    const [email, setEmail] = useState('');
+    const [telefone, setTelefone] = useState('');
+    const [desde, setDesde] = useState('');
+    const [valorMensal, setValorMensal] = useState('');
+
+    useEffect(() => {
+        carregarClientes();
+    }, []);
+
+    async function carregarClientes() {
+        try {
+            const dados = await AsyncStorage.getItem('@meihub_clientes');
+
+            if (dados) {
+                setClientesLista(JSON.parse(dados));
+            }
+        } catch (error) {
+            console.log('Erro ao carregar clientes:', error);
+        }
+    }
+
+    async function salvarCliente() {
+
+        if (!nome.trim()) {
+            alert('Digite o nome do cliente');
+            return;
+        }
+
+        const novoCliente = {
+            id: Date.now().toString(),
+
+            iniciais: nome
+                .split(' ')
+                .map(palavra => palavra[0])
+                .join('')
+                .substring(0, 2)
+                .toUpperCase(),
+
+            nome: nome,
+            servico: servico,
+            status: 'Em dia',
+            email: email,
+            telefone: telefone,
+            desde: desde,
+            valorMensal: valorMensal
+        };
+
+        try {
+            const novaLista = [...clientesLista, novoCliente];
+
+            await AsyncStorage.setItem(
+                '@meihub_clientes',
+                JSON.stringify(novaLista)
+            );
+
+            setClientesLista(novaLista);
+
+            setNome('');
+            setServico('');
+            setEmail('');
+            setTelefone('');
+            setDesde('');
+            setValorMensal('');
+
+            setModalAberto(false);
+
+        } catch (error) {
+            console.log('Erro ao salvar cliente:', error);
+        }
+    }
+
     function abrirDetalhe(cliente) {
         navigation.navigate('Detalhe', {
             cliente: cliente
@@ -78,130 +157,88 @@ export default function Lista({ navigation }) {
     }
 
     return (
-        <View>
+        <SafeAreaView>
 
-            {/* Cabeçalho do aplicativo */}
-            <View>
-                <Text>m.</Text>
-                <Text>Meu Negócio</Text>
+            <Text>Clientes</Text>
 
-                {/* Botão de notificações */}
-                <Pressable
-                    onPress={() => alert('Notificações')}
-                >
-                    <Text>🔔</Text>
-                </Pressable>
-            </View>
-
-
-            {/* Saudação */}
-            <View>
-                <Text>Olá, XXX</Text>
-
-                <Text>
-                    Seus clientes, sempre
-                </Text>
-
-                <Text>
-                    por perto.
-                </Text>
-            </View>
-
-
-            {/* Resumo dos clientes */}
-            <View>
-
-                <View>
-                    <Text>Clientes ativos</Text>
-                    <Text>24</Text>
-                </View>
-
-                <View>
-                    <Text>Este mês</Text>
-                    <Text>+3</Text>
-                </View>
-
-                <Pressable
-                    onPress={() => alert('Clientes')}
-                >
-                    <Text>♧</Text>
-                </Pressable>
-
-            </View>
-
-
-            {/* Campo de busca */}
-            <View>
-                <Text>⌕</Text>
-
-                <Text>
-                    Buscar por nome ou serviço
-                </Text>
-
-                <Pressable
-                    onPress={() => alert('Filtros')}
-                >
-                    <Text>☷</Text>
-                </Pressable>
-            </View>
-
-
-            {/* Título da lista */}
-            <View>
-                <Text>Clientes</Text>
-                <Text>24 cadastrados</Text>
-            </View>
-
+            {/* Botão Adicionar */}
+            <Pressable
+                onPress={() => setModalAberto(true)}
+            >
+                <Text>Adicionar</Text>
+            </Pressable>
 
             {/* Lista de clientes */}
             <FlatList
-                data={clientes}
+                data={clientesLista}
                 keyExtractor={(item) => item.id}
-
                 renderItem={({ item }) => (
-
                     <Pressable
                         onPress={() => abrirDetalhe(item)}
                     >
-
-                        {/* Iniciais do cliente */}
-                        <View>
-                            <Text>{item.iniciais}</Text>
-                        </View>
-
-
-                        {/* Informações principais */}
-                        <View>
-                            <Text>{item.nome}</Text>
-                            <Text>{item.servico}</Text>
-                        </View>
-
-
-                        {/* Status */}
-                        <View>
-                            <Text>{item.status}</Text>
-                        </View>
-
-
-                        {/* Botão de informações */}
-                        <Pressable
-                            onPress={() => abrirDetalhe(item)}
-                        >
-                            <Text>i</Text>
-                        </Pressable>
-
+                        <Text>{item.iniciais}</Text>
+                        <Text>{item.nome}</Text>
+                        <Text>{item.servico}</Text>
+                        <Text>{item.status}</Text>
                     </Pressable>
                 )}
             />
 
+            {/* Formulário */}
+            {modalAberto && (
+                <View>
 
-            {/* Botão Adicionar */}
-            <Pressable
-                onPress={() => alert('Em breve!')}
-            >
-                <Text>+</Text>
-            </Pressable>
+                    <Text>Adicionar Cliente</Text>
 
-        </View>
+                    <TextInput
+                        placeholder="Nome do cliente *"
+                        value={nome}
+                        onChangeText={setNome}
+                    />
+
+                    <TextInput
+                        placeholder="Serviço"
+                        value={servico}
+                        onChangeText={setServico}
+                    />
+
+                    <TextInput
+                        placeholder="E-mail"
+                        value={email}
+                        onChangeText={setEmail}
+                    />
+
+                    <TextInput
+                        placeholder="Telefone"
+                        value={telefone}
+                        onChangeText={setTelefone}
+                    />
+
+                    <TextInput
+                        placeholder="Cliente desde"
+                        value={desde}
+                        onChangeText={setDesde}
+                    />
+
+                    <TextInput
+                        placeholder="Valor mensal"
+                        value={valorMensal}
+                        onChangeText={setValorMensal}
+                    />
+
+                    <Pressable onPress={salvarCliente}>
+                        <Text>Salvar</Text>
+                    </Pressable>
+
+                    <Pressable
+                        onPress={() => setModalAberto(false)}
+                    >
+                        <Text>Cancelar</Text>
+                    </Pressable>
+
+                </View>
+            )}
+
+        </SafeAreaView>
     );
 }
