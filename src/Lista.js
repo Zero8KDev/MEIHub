@@ -6,11 +6,11 @@ import {
     FlatList,
     SafeAreaView,
     StatusBar,
-    StyleSheet,
     TextInput
 } from 'react-native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import styles from './DesignLista';
 
 // Lista de clientes utilizada nesta primeira versão.
 const clientes = [
