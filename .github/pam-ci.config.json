@@ -1,0 +1,11 @@
+{
+  "grupo": "Babuínos do note.js (gestão MEI)",
+  "raiz": ".",
+  "principal": "App.js",
+  "lista": "src/Lista.js",
+  "form": "",
+  "detalhe": "src/Detalhe.js",
+  "dados": [],
+  "storage": "src/Lista.js",
+  "sqlite": ""
+}
