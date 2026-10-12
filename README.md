@@ -5,7 +5,7 @@
 
 [![CI](https://github.com/Zero8KDev/MEIHub/actions/workflows/pam-ci.yml/badge.svg)](https://github.com/Zero8KDev/MEIHub/actions/workflows/pam-ci.yml) [![Nota](https://img.shields.io/badge/Nota%20PAM%20I-R-orange)](https://github.com/Zero8KDev/MEIHub/actions/workflows/pam-ci.yml)
 
-**R** — Regular · **36%** (20/55 pontos) · atualizado em 2026-10-12 13:09
+**R** — Regular · **36%** (20/55 pontos) · atualizado em 2026-10-12 18:32
 
 | Fase | Pontos |
 |------|--------|
