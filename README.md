@@ -1,5 +1,21 @@
 # MEIHub
 
+<!-- PAM-CI-NOTA-INICIO -->
+### Nota atual (automática) — Babuínos do note.js (gestão MEI)
+
+[![CI](https://github.com/Zero8KDev/MEIHub/actions/workflows/pam-ci.yml/badge.svg)](https://github.com/Zero8KDev/MEIHub/actions/workflows/pam-ci.yml) [![Nota](https://img.shields.io/badge/Nota%20PAM%20I-R-orange)](https://github.com/Zero8KDev/MEIHub/actions/workflows/pam-ci.yml)
+
+**R** — Regular · **36%** (20/55 pontos) · atualizado em 2026-10-05 23:26
+
+| Fase | Pontos |
+|------|--------|
+| Fase 1 — Estrutura | 8/10 |
+| Fase 2 — AsyncStorage | 10/15 |
+| Fase 3 — SQLite | 2/30 |
+
+Checklist item a item em [NOTA.md](NOTA.md) · [ver a rodada mais recente no Actions](https://github.com/Zero8KDev/MEIHub/actions/workflows/pam-ci.yml)
+<!-- PAM-CI-NOTA-FIM -->
+
 Babuínos do note.js — Projeto PAM I
 
 ---
