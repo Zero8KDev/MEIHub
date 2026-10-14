@@ -6,14 +6,14 @@
 
 ![](https://img.shields.io/static/v1?label=Nota%20PAM%20I&message=R&color=orange)
 
-**Nota atual: R** · 36% (20/55 pontos) · rodada de 2026-10-12 18:32:10 · commit `66dd448`
+**Nota atual: R** · 40% (22/55 pontos) · rodada de 2026-10-14 17:08:11 · commit `ee44225`
 
 Legenda: I = Insuficiente (0–25%) · R = Regular (25–50%) · B = Bom (50–75%) · MB = Muito bom (75–100%)
 
 | Fase | Pontos | Situação |
 |---|---|---|
 | Fase 1 — Estrutura | 8/10 | em desenvolvimento |
-| Fase 2 — AsyncStorage | 10/15 | em desenvolvimento |
+| Fase 2 — AsyncStorage | 12/15 | em desenvolvimento |
 | Fase 3 — SQLite | 2/30 | iniciando |
 
 ## Checklist validado
@@ -31,21 +31,21 @@ Legenda: I = Insuficiente (0–25%) · R = Regular (25–50%) · B = Bom (50–7
 - [x] **(+1 pts)** app.json identifica o app (name/slug preenchidos) — `app.json`
 - [x] **(+1 pts)** Projeto tem pelo menos 2 arquivos de tela/código — `2 arquivos de tela`
 
-### Fase 2 — Persistência com AsyncStorage (10/15 pts)
+### Fase 2 — Persistência com AsyncStorage (12/15 pts)
 
 - [x] **(+1 pts)** Dependência async-storage está no package.json — `no package.json`
 - [x] **(+1 pts)** Existe import do AsyncStorage no código — `src/Lista.js`
 - [x] **(+1 pts)** Storage faz leitura com AsyncStorage.getItem — `src/Lista.js`
 - [x] **(+1 pts)** Storage grava com AsyncStorage.setItem — `src/Lista.js`
 - [x] **(+1 pts)** Existe função de CARREGAR a lista (carregar/load) — `src/Lista.js`
-- [x] **(+1 pts)** Existe função de ADICIONAR/CADASTRAR — `src/Lista.js`
+- [x] **(+1 pts)** Existe função de ADICIONAR/CADASTRAR — `src/Detalhe.js`
 - [x] **(+1 pts)** Existe busca por id (buscar/find/getItem) — `src/Lista.js`
-- [ ] **(+1 pts)** Existe função de EXCLUIR/remover — `—`
+- [x] **(+1 pts)** Existe função de EXCLUIR/remover — `src/Detalhe.js`
 - [ ] **(+1 pts)** Formulário lê entradas com TextInput — `—`
 - [ ] **(+1 pts)** Formulário salva chamando adicionar/salvar — `—`
 - [x] **(+1 pts)** Lista é alimentada a partir do storage — `src/Lista.js`
 - [x] **(+1 pts)** Tela de detalhe usa busca/dados do storage — `src/Detalhe.js`
-- [ ] **(+1 pts)** Exclusão usa confirmação (Alert.alert) — `—`
+- [x] **(+1 pts)** Exclusão usa confirmação (Alert.alert) — `src/Detalhe.js`
 - [x] **(+1 pts)** Dados iniciais/seed são gravados na 1ª execução — `src/Lista.js`
 - [ ] **(+1 pts)** Formulário valida campos (trim/length/vazio) — `—`
 
