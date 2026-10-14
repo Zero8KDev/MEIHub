@@ -1,17 +1,30 @@
 import React, { useEffect, useState } from 'react';
+<<<<<<< HEAD
 
+=======
+>>>>>>> 481fb4bfbd8960462eef2af93f0b6b50ec3ff397
 import {
     View,
     Text,
     Pressable,
     FlatList,
     SafeAreaView,
+<<<<<<< HEAD
+=======
+    StatusBar,
+>>>>>>> 481fb4bfbd8960462eef2af93f0b6b50ec3ff397
     TextInput
 } from 'react-native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+<<<<<<< HEAD
 
 // Lista inicial de clientes.
+=======
+import styles from './DesignLista';
+
+// Lista de clientes utilizada nesta primeira versão.
+>>>>>>> 481fb4bfbd8960462eef2af93f0b6b50ec3ff397
 const clientes = [
     {
         id: '1',
@@ -76,7 +89,10 @@ export default function Lista({ navigation }) {
 
     const [modalAberto, setModalAberto] = useState(false);
 
+<<<<<<< HEAD
     // Estados dos campos do formulário.
+=======
+>>>>>>> 481fb4bfbd8960462eef2af93f0b6b50ec3ff397
     const [nome, setNome] = useState('');
     const [servico, setServico] = useState('');
     const [email, setEmail] = useState('');
@@ -84,15 +100,21 @@ export default function Lista({ navigation }) {
     const [desde, setDesde] = useState('');
     const [valorMensal, setValorMensal] = useState('');
 
+<<<<<<< HEAD
     // Estados da busca e do filtro.
     const [busca, setBusca] = useState('');
     const [filtroStatus, setFiltroStatus] = useState('Todos');
 
+=======
+>>>>>>> 481fb4bfbd8960462eef2af93f0b6b50ec3ff397
     useEffect(() => {
         carregarClientes();
     }, []);
 
+<<<<<<< HEAD
     // Carrega os clientes salvos.
+=======
+>>>>>>> 481fb4bfbd8960462eef2af93f0b6b50ec3ff397
     async function carregarClientes() {
         try {
             const dados = await AsyncStorage.getItem('@meihub_clientes');
@@ -105,7 +127,10 @@ export default function Lista({ navigation }) {
         }
     }
 
+<<<<<<< HEAD
     // Salva um novo cliente.
+=======
+>>>>>>> 481fb4bfbd8960462eef2af93f0b6b50ec3ff397
     async function salvarCliente() {
 
         if (!nome.trim()) {
@@ -117,14 +142,22 @@ export default function Lista({ navigation }) {
             id: Date.now().toString(),
 
             iniciais: nome
+<<<<<<< HEAD
                 .trim()
                 .split(/\s+/)
+=======
+                .split(' ')
+>>>>>>> 481fb4bfbd8960462eef2af93f0b6b50ec3ff397
                 .map(palavra => palavra[0])
                 .join('')
                 .substring(0, 2)
                 .toUpperCase(),
 
+<<<<<<< HEAD
             nome: nome.trim(),
+=======
+            nome: nome,
+>>>>>>> 481fb4bfbd8960462eef2af93f0b6b50ec3ff397
             servico: servico,
             status: 'Em dia',
             email: email,
@@ -143,7 +176,10 @@ export default function Lista({ navigation }) {
 
             setClientesLista(novaLista);
 
+<<<<<<< HEAD
             // Limpa os campos do formulário.
+=======
+>>>>>>> 481fb4bfbd8960462eef2af93f0b6b50ec3ff397
             setNome('');
             setServico('');
             setEmail('');
@@ -158,13 +194,17 @@ export default function Lista({ navigation }) {
         }
     }
 
+<<<<<<< HEAD
     // Abre a tela de detalhes do cliente.
+=======
+>>>>>>> 481fb4bfbd8960462eef2af93f0b6b50ec3ff397
     function abrirDetalhe(cliente) {
         navigation.navigate('Detalhe', {
             cliente: cliente
         });
     }
 
+<<<<<<< HEAD
     // Aplica a busca por nome e o filtro de status.
     const clientesFiltrados = clientesLista.filter(cliente => {
 
@@ -235,6 +275,23 @@ export default function Lista({ navigation }) {
             {/* Lista de clientes filtrados */}
             <FlatList
                 data={clientesFiltrados}
+=======
+    return (
+        <SafeAreaView>
+
+            <Text>Clientes</Text>
+
+            {/* Botão Adicionar */}
+            <Pressable
+                onPress={() => setModalAberto(true)}
+            >
+                <Text>Adicionar</Text>
+            </Pressable>
+
+            {/* Lista de clientes */}
+            <FlatList
+                data={clientesLista}
+>>>>>>> 481fb4bfbd8960462eef2af93f0b6b50ec3ff397
                 keyExtractor={(item) => item.id}
                 renderItem={({ item }) => (
                     <Pressable
@@ -246,6 +303,7 @@ export default function Lista({ navigation }) {
                         <Text>{item.status}</Text>
                     </Pressable>
                 )}
+<<<<<<< HEAD
                 ListEmptyComponent={
                     <Text>Nenhum cliente encontrado.</Text>
                 }
@@ -256,6 +314,15 @@ export default function Lista({ navigation }) {
                 <View>
 
                     <Text>Adicionar cliente</Text>
+=======
+            />
+
+            {/* Formulário */}
+            {modalAberto && (
+                <View>
+
+                    <Text>Adicionar Cliente</Text>
+>>>>>>> 481fb4bfbd8960462eef2af93f0b6b50ec3ff397
 
                     <TextInput
                         placeholder="Nome do cliente *"
