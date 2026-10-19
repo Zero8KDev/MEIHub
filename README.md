@@ -38,10 +38,11 @@ Gestão de clientes, serviços e agendamentos para MEIs e pequenos prestadores d
 
 Projeto criado com [`create-expo-app`](https://www.npmjs.com/package/create-expo-app) (Expo / React Native).
 
-1. Instale as dependências
+1. Instale/alinha as dependências do projeto
 
    ```bash
    npm install
+   npx expo install expo-sqlite
    ```
 
 2. Inicie o app
@@ -55,6 +56,12 @@ Projeto criado com [`create-expo-app`](https://www.npmjs.com/package/create-expo
    - **Web**: pressione `w` no terminal (requer `react-dom` e `react-native-web`)
    - **Android emulador**: pressione `a`
    - **iOS simulator**: pressione `i`
+
+## Fase 3 — SQLite
+
+Os dados de clientes são armazenados localmente no banco `meihub.db`, usando `expo-sqlite`. O arquivo `src/banco.js` cria a tabela na primeira abertura e insere clientes iniciais quando a tabela está vazia. A listagem usa `SELECT` com filtros `WHERE`; o cadastro usa `INSERT`; a edição/status usa `UPDATE`; e a exclusão usa `DELETE`. O arquivo `src/Cliente.sql` contém o esquema e os dados iniciais para consulta.
+
+Depois de instalar a dependência, inicie com `npx expo start`. Se estiver com o servidor já aberto, pare-o e inicie novamente.
 
 ## Fichas de Entrega
 
