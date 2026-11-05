@@ -91,3 +91,19 @@ Depois de instalar a dependência, inicie com `npx expo start`. Se estiver com o
 
 > [!TIP]
 > Material completo do curso: [PAM I](https://etec-bento-quirino.github.io/Programacao-Aplicativos-Moveis-I/)
+
+
+---
+
+## Colaboração por integrante
+
+> *Excluídos: commits do professor Jackson Sá (wendelmax), `github-actions[bot]` e `dependabot[bot]`. Contagem com base em `git log --no-merges`.*
+
+| # | Integrante | Commits | Participação |
+|---|------------|---------|--------------|
+| 1 | Davi-Buer | 7 | 43.8% ████████░░░░░░░░░░░░ |
+| 2 | Zero8Kdev | 5 | 31.2% ██████░░░░░░░░░░░░░░ |
+| 3 | ShyShy | 3 | 18.8% ███░░░░░░░░░░░░░░░░░ |
+| 4 | Diego Ferreira | 1 | 6.2% █░░░░░░░░░░░░░░░░░░░ |
+
+**Total de commits considerados:** 16
