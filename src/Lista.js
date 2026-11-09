@@ -6,7 +6,8 @@ import {
     Pressable,
     FlatList,
     SafeAreaView,
-    TextInput
+    TextInput,
+    ActivityIndicator
 } from 'react-native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -72,6 +73,8 @@ const clientes = [
 
 export default function Lista({ navigation }) {
 
+    const [carregando, setCarregando] = useState(true);
+
     const [clientesLista, setClientesLista] = useState(clientes);
 
     const [modalAberto, setModalAberto] = useState(false);
@@ -95,13 +98,18 @@ export default function Lista({ navigation }) {
     // Carrega os clientes salvos.
     async function carregarClientes() {
         try {
+            setCarregando(true);
+        
             const dados = await AsyncStorage.getItem('@meihub_clientes');
-
+        
             if (dados) {
                 setClientesLista(JSON.parse(dados));
             }
         } catch (error) {
             console.log('Erro ao carregar clientes:', error);
+            alert('Não foi possível carregar os clientes.');
+        } finally {
+            setCarregando(false);
         }
     }
 
@@ -233,23 +241,28 @@ export default function Lista({ navigation }) {
             </Pressable>
 
             {/* Lista de clientes filtrados */}
-            <FlatList
-                data={clientesFiltrados}
-                keyExtractor={(item) => item.id}
-                renderItem={({ item }) => (
-                    <Pressable
-                        onPress={() => abrirDetalhe(item)}
-                    >
-                        <Text>{item.iniciais}</Text>
-                        <Text>{item.nome}</Text>
-                        <Text>{item.servico}</Text>
-                        <Text>{item.status}</Text>
-                    </Pressable>
+                                {carregando ? (
+                    <View>
+                        <ActivityIndicator size="large" />
+                        <Text>Carregando clientes...</Text>
+                    </View>
+                ) : (
+                    <FlatList
+                        data={clientesFiltrados}
+                        keyExtractor={(item) => item.id}
+                        renderItem={({ item }) => (
+                            <Pressable onPress={() => abrirDetalhe(item)}>
+                                <Text>{item.iniciais}</Text>
+                                <Text>{item.nome}</Text>
+                                <Text>{item.servico}</Text>
+                                <Text>{item.status}</Text>
+                            </Pressable>
+                        )}
+                        ListEmptyComponent={
+                            <Text>Nenhum cliente encontrado.</Text>
+                        }
+                    />
                 )}
-                ListEmptyComponent={
-                    <Text>Nenhum cliente encontrado.</Text>
-                }
-            />
 
             {/* Formulário de cadastro */}
             {modalAberto && (

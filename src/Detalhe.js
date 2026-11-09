@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import * as Notifications from 'expo-notifications';
 
 import {
     View,
@@ -93,6 +94,31 @@ export default function Detalhe({ route, navigation }) {
                 }
             ]
         );
+    }
+
+        //notificacao
+        async function enviarNotificacao() {
+        try {
+            const { status } = await Notifications.requestPermissionsAsync();
+
+            if (status !== 'granted') {
+                alert('Permissão para notificações não concedida.');
+                return;
+            }
+
+            await Notifications.scheduleNotificationAsync({
+                content: {
+                    title: 'MEIHub - Lembrete de pagamento',
+                    body: `Verifique o pagamento de ${cliente.nome}.`,
+                },
+                trigger: null,
+            });
+
+            alert('Notificação enviada!');
+        } catch (error) {
+            console.log(error);
+            alert('Não foi possível enviar a notificação.');
+        }
     }
 
     return (
@@ -215,13 +241,12 @@ export default function Detalhe({ route, navigation }) {
                             <Text>Editar cliente</Text>
                         </Pressable>
 
-                        <Pressable
-                            onPress={() => Alert.alert(
-                                'Mensagem',
-                                'A função de enviar mensagem será implementada posteriormente.'
-                            )}
-                        >
+                        <Pressable onPress={() => alert('Enviar mensagem')}>
                             <Text>Enviar mensagem</Text>
+                        </Pressable>
+
+                        <Pressable onPress={enviarNotificacao}>
+                            <Text>Enviar lembrete de pagamento</Text>
                         </Pressable>
 
                         <Pressable onPress={confirmarExclusao}>

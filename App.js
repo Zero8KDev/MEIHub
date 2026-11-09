@@ -1,11 +1,20 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-
+import * as Notifications from 'expo-notifications';
 import Lista from './src/Lista';
 import Detalhe from './src/Detalhe';
 
 const Stack = createNativeStackNavigator();
+
+Notifications.setNotificationHandler({
+    handleNotification: async () => ({
+        shouldShowBanner: true,
+        shouldShowList: true,
+        shouldPlaySound: true,
+        shouldSetBadge: false,
+    }),
+});
 
 export default function App() {
     return (
