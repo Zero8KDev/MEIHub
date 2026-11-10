@@ -3,17 +3,18 @@
 <!-- PAM-CI-NOTA-INICIO -->
 ### Nota atual (automática) — Babuínos do note.js (gestão MEI)
 
-[![CI](https://github.com/Zero8KDev/MEIHub/actions/workflows/pam-ci.yml/badge.svg)](https://github.com/Zero8KDev/MEIHub/actions/workflows/pam-ci.yml) [![Nota](https://img.shields.io/badge/Nota%20PAM%20I-MB-green)](https://github.com/Zero8KDev/MEIHub/actions/workflows/pam-ci.yml)
+[![CI](https://github.com/ORG/REPO/actions/workflows/pam-ci.yml/badge.svg)](https://github.com/ORG/REPO/actions/workflows/pam-ci.yml) [![Nota](https://img.shields.io/badge/Nota%20PAM%20I-MB-green)](https://github.com/ORG/REPO/actions/workflows/pam-ci.yml)
 
-**MB** — Muito bom · **80%** (44/55 pontos) · atualizado em 2026-11-09 11:28
+**MB** — Muito bom · **84%** (84/100 pontos) · atualizado em 2026-11-10 01:28
 
 | Fase | Pontos |
 |------|--------|
 | Fase 1 — Estrutura | 8/10 |
 | Fase 2 — AsyncStorage | 12/15 |
-| Fase 3 — SQLite | 24/30 |
+| Fase 3 — SQLite | 28/30 |
+| Fase 4 — Versão Final (UX e Dispositivo) | 36/45 |
 
-Checklist item a item em [NOTA.md](NOTA.md) · [ver a rodada mais recente no Actions](https://github.com/Zero8KDev/MEIHub/actions/workflows/pam-ci.yml)
+Checklist item a item em [NOTA.md](NOTA.md) · [ver a rodada mais recente no Actions](https://github.com/ORG/REPO/actions/workflows/pam-ci.yml)
 <!-- PAM-CI-NOTA-FIM -->
 
 Babuínos do note.js — Projeto PAM I
