@@ -5,11 +5,11 @@
 
 [![CI](https://github.com/Zero8KDev/MEIHub/actions/workflows/pam-ci.yml/badge.svg)](https://github.com/Zero8KDev/MEIHub/actions/workflows/pam-ci.yml) [![Nota](https://img.shields.io/badge/Nota%20PAM%20I-MB-green)](https://github.com/Zero8KDev/MEIHub/actions/workflows/pam-ci.yml)
 
-**MB** — Muito bom · **87%** (87/100 pontos) · atualizado em 2026-11-16 13:34
+**MB** — Muito bom · **88%** (88/100 pontos) · atualizado em 2026-11-16 23:04
 
 | Fase | Pontos |
 |------|--------|
-| Fase 1 — Estrutura | 8/10 |
+| Fase 1 — Estrutura | 9/10 |
 | Fase 2 — AsyncStorage | 12/15 |
 | Fase 3 — SQLite | 28/30 |
 | Fase 4 — Versão Final (UX e Dispositivo) | 39/45 |

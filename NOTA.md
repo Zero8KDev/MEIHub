@@ -6,13 +6,13 @@
 
 ![](https://img.shields.io/static/v1?label=Nota%20PAM%20I&message=MB&color=green)
 
-**Nota atual: MB** · 87% (87/100 pontos) · rodada de 2026-11-16 13:34:55 · commit `d763534`
+**Nota atual: MB** · 88% (88/100 pontos) · rodada de 2026-11-16 23:04:51 · commit `a6f33d9`
 
 Legenda: I = Insuficiente (0–25%) · R = Regular (25–50%) · B = Bom (50–75%) · MB = Muito bom (75–100%)
 
 | Fase | Peso | Pontos | Situação |
 |---|---|---|---|
-| Fase 1 — Estrutura | 1x (10 pts) | 8/10 | em desenvolvimento |
+| Fase 1 — Estrutura | 1x (10 pts) | 9/10 | em desenvolvimento |
 | Fase 2 — AsyncStorage | 1x (15 pts) | 12/15 | em desenvolvimento |
 | Fase 3 — SQLite | 2x (30 pts) | 28/30 | em desenvolvimento |
 | Fase 4 — Versão Final (SQLite + UX + Dispositivo) | 3x (45 pts) | 39/45 | em desenvolvimento |
@@ -29,16 +29,16 @@ Legenda: I = Insuficiente (0–25%) · R = Regular (25–50%) · B = Bom (50–7
 
 ## Checklist validado
 
-### Fase 1 — Estrutura do projeto (8/10 pts · peso 1x)
+### Fase 1 — Estrutura do projeto (9/10 pts · peso 1x)
 
 - [x] **(+1 pts)** README.md existe e fala do projeto/grupo — `README.md`
 - [x] **(+1 pts)** Arquivo principal do app existe (App.js) — `App.js`
-- [x] **(+1 pts)** package.json existe com a dependência "expo" — `expo ~57.0.32`
+- [x] **(+1 pts)** package.json existe com a dependência "expo" — `expo ~57.0.33`
 - [x] **(+1 pts)** Existe tela de LISTAGEM — `src/Lista.js`
 - [x] **(+1 pts)** Existem dados iniciais (seed) em arquivo de dados — `Detalhe.js`
 - [ ] **(+1 pts)** Existe tela de FORMULÁRIO — `—`
 - [x] **(+1 pts)** Existe tela de DETALHE — `src/Detalhe.js`
-- [ ] **(+1 pts)** Dependências importadas existem no package.json (app não quebra ao abrir) — `react, react-native`
+- [x] **(+1 pts)** Dependências importadas existem no package.json (app não quebra ao abrir) — `todos os imports resolvem`
 - [x] **(+1 pts)** app.json identifica o app (name/slug preenchidos) — `app.json`
 - [x] **(+1 pts)** Projeto tem pelo menos 2 arquivos de tela/código — `6 arquivos de tela`
 
@@ -94,7 +94,7 @@ Legenda: I = Insuficiente (0–25%) · R = Regular (25–50%) · B = Bom (50–7
 - [x] **(+3 pts)** UX: Mensagem de erro amigável e validação se falhar ao SALVAR/EXCLUIR (try/catch + Alert/.trim) — `Detalhe.js + validação .trim()`
 - [ ] **(+3 pts)** Organização do código: separação em pastas por responsabilidade (screens/app, database/data, components) — `FALTA separar código em pastas (ex.: screens/, database/, components/)`
 - [x] **(+3 pts)** Interface consistente: FlatList (keyExtractor + renderItem) e estilização StyleSheet.create — `Lista.js (2 arquivos com StyleSheet)`
-- [x] **(+3 pts)** Entrega: repositório limpo (.gitignore sem node_modules) e README com instruções/Expo Go/APK — `README.md (77 linhas) + .gitignore`
+- [x] **(+3 pts)** Entrega: repositório limpo (.gitignore sem node_modules) e README com instruções/Expo Go/APK — `README.md (76 linhas) + .gitignore`
 
 ## Para evoluir a nota
 
