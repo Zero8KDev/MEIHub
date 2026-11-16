@@ -1,4 +1,3 @@
-// Tema compartilhado entre as telas do MEIHub.
 export const cores = {
     primaria: '#0B3A6E',       // azul-marinho (cabeçalho e botões)
     primariaClara: '#DCEBFD',  // fundo de avatar / card de resumo
