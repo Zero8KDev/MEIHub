@@ -1,13 +1,12 @@
 > Este arquivo e **gerado automaticamente** pelo CI a cada push na branch `main`.
 > Nao edite a mao: o proximo commit do CI sobrescreve. Para ver a rodada no Actions:
-> https://github.com/ORG/REPO/actions/workflows/pam-ci.yml
+> https://github.com/Zero8KDev/MEIHub/actions/workflows/pam-ci.yml
 
 ## Nota PAM I — Babuínos do note.js (gestão MEI)
 
 ![](https://img.shields.io/static/v1?label=Nota%20PAM%20I&message=MB&color=green)
 
-**Nota atual: MB** · 84% (84/100 pontos) · rodada de 2026-11-10 01:28:45 · commit `local`
-**Nota atual: MB** · 80% (44/55 pontos) · rodada de 2026-11-16 13:32:14 · commit `cfbb5a7`
+**Nota atual: MB** · 87% (87/100 pontos) · rodada de 2026-11-16 13:34:55 · commit `d763534`
 
 Legenda: I = Insuficiente (0–25%) · R = Regular (25–50%) · B = Bom (50–75%) · MB = Muito bom (75–100%)
 
@@ -16,7 +15,7 @@ Legenda: I = Insuficiente (0–25%) · R = Regular (25–50%) · B = Bom (50–7
 | Fase 1 — Estrutura | 1x (10 pts) | 8/10 | em desenvolvimento |
 | Fase 2 — AsyncStorage | 1x (15 pts) | 12/15 | em desenvolvimento |
 | Fase 3 — SQLite | 2x (30 pts) | 28/30 | em desenvolvimento |
-| Fase 4 — Versão Final (SQLite + UX + Dispositivo) | 3x (45 pts) | 36/45 | em desenvolvimento |
+| Fase 4 — Versão Final (SQLite + UX + Dispositivo) | 3x (45 pts) | 39/45 | em desenvolvimento |
 
 ## Resumo dos Testes Funcionais (Execução Real em Runtime Node + SQLite)
 
@@ -36,7 +35,7 @@ Legenda: I = Insuficiente (0–25%) · R = Regular (25–50%) · B = Bom (50–7
 - [x] **(+1 pts)** Arquivo principal do app existe (App.js) — `App.js`
 - [x] **(+1 pts)** package.json existe com a dependência "expo" — `expo ~57.0.32`
 - [x] **(+1 pts)** Existe tela de LISTAGEM — `src/Lista.js`
-- [x] **(+1 pts)** Existem dados iniciais (seed) em arquivo de dados — `banco.js`
+- [x] **(+1 pts)** Existem dados iniciais (seed) em arquivo de dados — `Detalhe.js`
 - [ ] **(+1 pts)** Existe tela de FORMULÁRIO — `—`
 - [x] **(+1 pts)** Existe tela de DETALHE — `src/Detalhe.js`
 - [ ] **(+1 pts)** Dependências importadas existem no package.json (app não quebra ao abrir) — `react, react-native`
@@ -49,10 +48,10 @@ Legenda: I = Insuficiente (0–25%) · R = Regular (25–50%) · B = Bom (50–7
 - [x] **(+1 pts)** Existe import do AsyncStorage (ou SQLite) no código — `src/Lista.js`
 - [x] **(+1 pts)** Storage faz leitura (AsyncStorage.getItem ou SELECT) — `src/Lista.js`
 - [x] **(+1 pts)** Storage grava dados (AsyncStorage.setItem ou INSERT) — `src/Lista.js`
-- [x] **(+1 pts)** Existe função de CARREGAR a lista (carregar/load/listar/get) — `banco.js`
-- [x] **(+1 pts)** Existe função de ADICIONAR/CADASTRAR (adicionar/salvar/inserir/create) — `banco.js`
-- [x] **(+1 pts)** Existe busca por id (buscar/find/getItem/getFirst) — `banco.js`
-- [x] **(+1 pts)** Existe função de EXCLUIR/remover — `banco.js`
+- [x] **(+1 pts)** Existe função de CARREGAR a lista (carregar/load/listar/get) — `Detalhe.js`
+- [x] **(+1 pts)** Existe função de ADICIONAR/CADASTRAR (adicionar/salvar/inserir/create) — `Detalhe.js`
+- [x] **(+1 pts)** Existe busca por id (buscar/find/getItem/getFirst) — `Detalhe.js`
+- [x] **(+1 pts)** Existe função de EXCLUIR/remover — `Detalhe.js`
 - [ ] **(+1 pts)** Formulário lê entradas com TextInput — `—`
 - [ ] **(+1 pts)** Formulário salva chamando adicionar/salvar — `—`
 - [x] **(+1 pts)** Lista é alimentada a partir do storage/banco — `src/Lista.js`
@@ -76,10 +75,10 @@ Legenda: I = Insuficiente (0–25%) · R = Regular (25–50%) · B = Bom (50–7
 - [x] **(+2 pts)** Tela de lista carrega dados do banco — `src/Lista.js`
 - [ ] **(+2 pts)** Formulário salva no banco (INSERT/runAsync/runSync) — `—`
 - [x] **(+2 pts)** Detalhe busca no banco com WHERE/SELECT — `src/Detalhe.js`
-- [x] **(+2 pts)** Usa async/await corretamente (mais de 2 await) — `banco.js`
+- [x] **(+2 pts)** Usa async/await corretamente (mais de 2 await) — `Detalhe.js`
 - [x] **(+2 pts)** Banco possui dados iniciais (seed inserido em SQL) — `banco.js`
 
-### Fase 4 — Versão Final: SQLite Exclusivo, UX, Dispositivo e Entrega (36/45 pts · peso 3x)
+### Fase 4 — Versão Final: SQLite Exclusivo, UX, Dispositivo e Entrega (39/45 pts · peso 3x)
 
 - [ ] **(+3 pts)** SQLite exclusivo: fluxo das telas usa SQLite sem depender de AsyncStorage p/ dados críticos — `FALTA migrar telas 100% para SQLite (remover AsyncStorage do CRUD principal)`
 - [x] **(+3 pts)** [Teste Funcional SQLite] Banco abre e cria a(s) tabela(s) em memória (CREATE TABLE) — `Tabela(s) criada(s) no motor SQLite: clientes`
@@ -94,8 +93,8 @@ Legenda: I = Insuficiente (0–25%) · R = Regular (25–50%) · B = Bom (50–7
 - [x] **(+3 pts)** UX: Mensagem de erro amigável se falhar ao CARREGAR dados (try/catch com feedback) — `Detalhe.js`
 - [x] **(+3 pts)** UX: Mensagem de erro amigável e validação se falhar ao SALVAR/EXCLUIR (try/catch + Alert/.trim) — `Detalhe.js + validação .trim()`
 - [ ] **(+3 pts)** Organização do código: separação em pastas por responsabilidade (screens/app, database/data, components) — `FALTA separar código em pastas (ex.: screens/, database/, components/)`
-- [ ] **(+3 pts)** Interface consistente: FlatList (keyExtractor + renderItem) e estilização StyleSheet.create — `FALTA FlatList com keyExtractor/renderItem e StyleSheet.create consistente`
-- [x] **(+3 pts)** Entrega: repositório limpo (.gitignore sem node_modules) e README com instruções/Expo Go/APK — `README.md (75 linhas) + .gitignore`
+- [x] **(+3 pts)** Interface consistente: FlatList (keyExtractor + renderItem) e estilização StyleSheet.create — `Lista.js (2 arquivos com StyleSheet)`
+- [x] **(+3 pts)** Entrega: repositório limpo (.gitignore sem node_modules) e README com instruções/Expo Go/APK — `README.md (77 linhas) + .gitignore`
 
 ## Para evoluir a nota
 
