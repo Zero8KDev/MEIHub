@@ -6,7 +6,7 @@
 
 ![](https://img.shields.io/static/v1?label=Nota%20PAM%20I&message=MB&color=green)
 
-**Nota atual: MB** · 88% (88/100 pontos) · rodada de 2026-11-16 23:04:51 · commit `a6f33d9`
+**Nota atual: MB** · 88% (88/100 pontos) · rodada de 2026-11-16 23:38:26 · commit `eaf5199`
 
 Legenda: I = Insuficiente (0–25%) · R = Regular (25–50%) · B = Bom (50–75%) · MB = Muito bom (75–100%)
 
@@ -33,7 +33,7 @@ Legenda: I = Insuficiente (0–25%) · R = Regular (25–50%) · B = Bom (50–7
 
 - [x] **(+1 pts)** README.md existe e fala do projeto/grupo — `README.md`
 - [x] **(+1 pts)** Arquivo principal do app existe (App.js) — `App.js`
-- [x] **(+1 pts)** package.json existe com a dependência "expo" — `expo ~57.0.33`
+- [x] **(+1 pts)** package.json existe com a dependência "expo" — `expo ^58.0.25`
 - [x] **(+1 pts)** Existe tela de LISTAGEM — `src/Lista.js`
 - [x] **(+1 pts)** Existem dados iniciais (seed) em arquivo de dados — `Detalhe.js`
 - [ ] **(+1 pts)** Existe tela de FORMULÁRIO — `—`
