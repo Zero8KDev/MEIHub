@@ -7,6 +7,7 @@
 ![](https://img.shields.io/static/v1?label=Nota%20PAM%20I&message=MB&color=green)
 
 **Nota atual: MB** · 84% (84/100 pontos) · rodada de 2026-11-10 01:28:45 · commit `local`
+**Nota atual: MB** · 80% (44/55 pontos) · rodada de 2026-11-16 13:32:14 · commit `cfbb5a7`
 
 Legenda: I = Insuficiente (0–25%) · R = Regular (25–50%) · B = Bom (50–75%) · MB = Muito bom (75–100%)
 
@@ -40,7 +41,7 @@ Legenda: I = Insuficiente (0–25%) · R = Regular (25–50%) · B = Bom (50–7
 - [x] **(+1 pts)** Existe tela de DETALHE — `src/Detalhe.js`
 - [ ] **(+1 pts)** Dependências importadas existem no package.json (app não quebra ao abrir) — `react, react-native`
 - [x] **(+1 pts)** app.json identifica o app (name/slug preenchidos) — `app.json`
-- [x] **(+1 pts)** Projeto tem pelo menos 2 arquivos de tela/código — `4 arquivos de tela`
+- [x] **(+1 pts)** Projeto tem pelo menos 2 arquivos de tela/código — `6 arquivos de tela`
 
 ### Fase 2 — Persistência com AsyncStorage (12/15 pts · peso 1x)
 
