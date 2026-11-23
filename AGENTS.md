@@ -19,6 +19,6 @@ React Native (Expo SDK 57) app for managing MEI/small-service clients and appoin
 ## Gotchas
 
 - There is **no `app.json`/`app.config.js`** in the repo. If Expo complains about missing config or the app name, one must be created.
-- Each screen file has a **duplicate `import { StyleSheet } ...` mid-file** and an exported `styles` object (lines ~82 in `Lista.js`, ~108 in `Detalhe.js`). Existing UI components render with hard-coded/plain styles, not `styles.*`. Match this pattern when editing.
+- Visual styles live in `src/ListaStyles.js`, `src/DetalheStyles.js` and `src/theme.js`. The screens import `styles` from those files and apply `styles.*` to every component; keep that pattern when editing. The native-stack headers are hidden in `App.js` (`headerShown: false`) because both screens draw their own colored headers.
 - Data is **fixed mock data** in `Lista.js`, not yet persisted. README's fase table (AsyncStorage in fase 2, SQLite CRUD in fase 3) describes planned work not yet implemented — don't assume SQLite/AsyncStorage code exists.
 - Keep UI copy and code comments in Portuguese to match the repo.

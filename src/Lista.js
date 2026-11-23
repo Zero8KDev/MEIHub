@@ -7,10 +7,13 @@ import {
     FlatList,
     SafeAreaView,
     TextInput,
-    ActivityIndicator
+    ActivityIndicator,
+    ScrollView
 } from 'react-native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
+import { styles } from './ListaStyles';
 
 // Lista inicial de clientes.
 const clientes = [
@@ -187,135 +190,240 @@ export default function Lista({ navigation }) {
         return nomeCorresponde && statusCorresponde;
     });
 
+    const totalEmDia = clientesLista.filter(
+        cliente => cliente.status === 'Em dia'
+    ).length;
+
     return (
-        <SafeAreaView>
+        <SafeAreaView style={styles.safe}>
 
             {/* Cabeçalho */}
-            <Text>MEIHub</Text>
-            <Text>Meus clientes</Text>
+            <View style={styles.header}>
+                <View style={styles.marcaLinha}>
+                    <View style={styles.marcaLogo}>
+                        <Text style={styles.marcaLogoTexto}>M</Text>
+                    </View>
+                    <Text style={styles.marcaNome}>MEIHub</Text>
+                </View>
+                <Text style={styles.titulo}>Meus clientes</Text>
+            </View>
+
+            {/* Resumo */}
+            <View style={styles.resumo}>
+                <View style={styles.resumoBloco}>
+                    <View style={styles.resumoItem}>
+                        <Text style={styles.resumoRotulo}>Clientes</Text>
+                        <Text style={styles.resumoValor}>
+                            {clientesLista.length}
+                        </Text>
+                    </View>
+                    <View style={styles.resumoItem}>
+                        <Text style={styles.resumoRotulo}>Em dia</Text>
+                        <Text style={styles.resumoValor}>{totalEmDia}</Text>
+                    </View>
+                </View>
+                <View style={styles.resumoIcone}>
+                    <Text style={styles.resumoIconeTexto}>✓</Text>
+                </View>
+            </View>
 
             {/* Campo de busca */}
             <TextInput
+                style={styles.busca}
                 placeholder="Buscar cliente pelo nome"
                 value={busca}
                 onChangeText={setBusca}
             />
 
             {/* Filtros por status */}
-            <View>
-
-                <Pressable
-                    onPress={() => setFiltroStatus('Todos')}
-                >
-                    <Text>
-                        {filtroStatus === 'Todos' ? '✓ ' : ''}
-                        Todos
-                    </Text>
-                </Pressable>
-
-                <Pressable
-                    onPress={() => setFiltroStatus('Em dia')}
-                >
-                    <Text>
-                        {filtroStatus === 'Em dia' ? '✓ ' : ''}
-                        Em dia
-                    </Text>
-                </Pressable>
-
-                <Pressable
-                    onPress={() => setFiltroStatus('Pendente')}
-                >
-                    <Text>
-                        {filtroStatus === 'Pendente' ? '✓ ' : ''}
-                        Pendente
-                    </Text>
-                </Pressable>
-
+            <View style={styles.filtros}>
+                {['Todos', 'Em dia', 'Pendente'].map(status => (
+                    <Pressable
+                        key={status}
+                        onPress={() => setFiltroStatus(status)}
+                        style={[
+                            styles.filtro,
+                            filtroStatus === status && styles.filtroAtivo
+                        ]}
+                    >
+                        <Text
+                            style={[
+                                styles.filtroTexto,
+                                filtroStatus === status && styles.filtroTextoAtivo
+                            ]}
+                        >
+                            {filtroStatus === status ? '✓ ' : ''}
+                            {status}
+                        </Text>
+                    </Pressable>
+                ))}
             </View>
+
+            {/* Cabeçalho da lista */}
+            <View style={styles.listaCabecalho}>
+                <Text style={styles.listaTitulo}>Clientes cadastrados</Text>
+                <Text style={styles.listaContagem}>
+                    {clientesFiltrados.length}{' '}
+                    {clientesFiltrados.length === 1 ? 'cliente' : 'clientes'}
+                </Text>
+            </View>
+
+            {/* Lista de clientes filtrados */}
+            {carregando ? (
+                <View style={styles.carregando}>
+                    <ActivityIndicator size="large" />
+                    <Text style={styles.carregandoTexto}>
+                        Carregando clientes...
+                    </Text>
+                </View>
+            ) : (
+                <FlatList
+                    style={styles.listaCard}
+                    contentContainerStyle={styles.listaConteudo}
+                    data={clientesFiltrados}
+                    keyExtractor={(item) => item.id}
+                    renderItem={({ item }) => (
+                        <Pressable
+                            style={styles.item}
+                            onPress={() => abrirDetalhe(item)}
+                        >
+                            <View style={styles.avatar}>
+                                <Text style={styles.avatarTexto}>
+                                    {item.iniciais ||
+                                        (item.nome || '')
+                                            .split(' ')
+                                            .map(palavra => palavra[0])
+                                            .join('')
+                                            .substring(0, 2)
+                                            .toUpperCase()}
+                                </Text>
+                            </View>
+
+                            <View style={styles.itemInfo}>
+                                <Text style={styles.itemNome} numberOfLines={1}>
+                                    {item.nome}
+                                </Text>
+                                <Text
+                                    style={styles.itemServico}
+                                    numberOfLines={1}
+                                >
+                                    {item.servico || 'Serviço não informado'}
+                                </Text>
+                            </View>
+
+                            <View
+                                style={[
+                                    styles.badge,
+                                    item.status === 'Pendente' &&
+                                        styles.badgePendente
+                                ]}
+                            >
+                                <Text
+                                    style={[
+                                        styles.badgeTexto,
+                                        item.status === 'Pendente' &&
+                                            styles.badgeTextoPendente
+                                    ]}
+                                >
+                                    {item.status}
+                                </Text>
+                            </View>
+
+                            <View style={styles.itemInfoBotao}>
+                                <Text style={styles.itemInfoTexto}>i</Text>
+                            </View>
+                        </Pressable>
+                    )}
+                    ListEmptyComponent={
+                        <Text style={styles.vazio}>
+                            Nenhum cliente encontrado.
+                        </Text>
+                    }
+                />
+            )}
 
             {/* Botão para abrir o formulário */}
             <Pressable
+                style={styles.fab}
                 onPress={() => setModalAberto(true)}
             >
-                <Text>Adicionar cliente</Text>
+                <Text style={styles.fabTexto}>+</Text>
             </Pressable>
-
-            {/* Lista de clientes filtrados */}
-                                {carregando ? (
-                    <View>
-                        <ActivityIndicator size="large" />
-                        <Text>Carregando clientes...</Text>
-                    </View>
-                ) : (
-                    <FlatList
-                        data={clientesFiltrados}
-                        keyExtractor={(item) => item.id}
-                        renderItem={({ item }) => (
-                            <Pressable onPress={() => abrirDetalhe(item)}>
-                                <Text>{item.iniciais}</Text>
-                                <Text>{item.nome}</Text>
-                                <Text>{item.servico}</Text>
-                                <Text>{item.status}</Text>
-                            </Pressable>
-                        )}
-                        ListEmptyComponent={
-                            <Text>Nenhum cliente encontrado.</Text>
-                        }
-                    />
-                )}
 
             {/* Formulário de cadastro */}
             {modalAberto && (
-                <View>
-
-                    <Text>Adicionar cliente</Text>
-
-                    <TextInput
-                        placeholder="Nome do cliente *"
-                        value={nome}
-                        onChangeText={setNome}
-                    />
-
-                    <TextInput
-                        placeholder="Serviço"
-                        value={servico}
-                        onChangeText={setServico}
-                    />
-
-                    <TextInput
-                        placeholder="E-mail"
-                        value={email}
-                        onChangeText={setEmail}
-                    />
-
-                    <TextInput
-                        placeholder="Telefone"
-                        value={telefone}
-                        onChangeText={setTelefone}
-                    />
-
-                    <TextInput
-                        placeholder="Cliente desde"
-                        value={desde}
-                        onChangeText={setDesde}
-                    />
-
-                    <TextInput
-                        placeholder="Valor mensal"
-                        value={valorMensal}
-                        onChangeText={setValorMensal}
-                    />
-
-                    <Pressable onPress={salvarCliente}>
-                        <Text>Salvar</Text>
-                    </Pressable>
-
-                    <Pressable
-                        onPress={() => setModalAberto(false)}
+                <View style={styles.overlay}>
+                    <ScrollView
+                        style={styles.formulario}
+                        keyboardShouldPersistTaps="handled"
                     >
-                        <Text>Cancelar</Text>
-                    </Pressable>
+                        <Text style={styles.formularioTitulo}>
+                            Adicionar cliente
+                        </Text>
 
+                        <TextInput
+                            style={styles.input}
+                            placeholder="Nome do cliente *"
+                            value={nome}
+                            onChangeText={setNome}
+                        />
+
+                        <TextInput
+                            style={styles.input}
+                            placeholder="Serviço"
+                            value={servico}
+                            onChangeText={setServico}
+                        />
+
+                        <TextInput
+                            style={styles.input}
+                            placeholder="E-mail"
+                            value={email}
+                            onChangeText={setEmail}
+                            keyboardType="email-address"
+                            autoCapitalize="none"
+                        />
+
+                        <TextInput
+                            style={styles.input}
+                            placeholder="Telefone"
+                            value={telefone}
+                            onChangeText={setTelefone}
+                            keyboardType="phone-pad"
+                        />
+
+                        <TextInput
+                            style={styles.input}
+                            placeholder="Cliente desde"
+                            value={desde}
+                            onChangeText={setDesde}
+                        />
+
+                        <TextInput
+                            style={styles.input}
+                            placeholder="Valor mensal"
+                            value={valorMensal}
+                            onChangeText={setValorMensal}
+                        />
+
+                        <Pressable
+                            style={styles.botaoPrimario}
+                            onPress={salvarCliente}
+                        >
+                            <Text style={styles.botaoPrimarioTexto}>
+                                Salvar
+                            </Text>
+                        </Pressable>
+
+                        <Pressable
+                            style={styles.botaoSecundario}
+                            onPress={() => setModalAberto(false)}
+                        >
+                            <Text style={styles.botaoSecundarioTexto}>
+                                Cancelar
+                            </Text>
+                        </Pressable>
+                    </ScrollView>
                 </View>
             )}
 
